@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">FoodyApplication</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+    <!--    Error -->
+    <string name="enter_name">Enter name</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_confirm_password">Enter confirm password</string>
+    <string name="email_invalidate">Email invalidate</string>
+    <string name="email_existed">Email existed</string>
+    <string name="phone_existed">Phone existed</string>
+    <string name="password_mismatch">Password mismatch</string>
+    <string name="email_or_password_incorrect">Email or password incorrect</string>
+    <string name="sign_up_failed">Sign up failed : %1$s</string>
+    <string name="server_error">Server error : %1$s</string>
+    <!--    Success -->
+    <string name="sign_up_successfully">Sign up successfully!</string>
+    <string name="login_successfully">Login successfully!</string>
+    <!--    -->
+    <string name="my_application">My Application</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="foody_app">Foody App</string>
+    <string name="already_registered">Already Registered?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account">Don\'t Have An Account?</string>
+    <string name="search_your_food">Search your food</string>
+    <string name="title_daily_meal">Daily Meal</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="log_out">Log Out</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="update_profile_successfully">Update Success</string>
+    <string name="update_profile_failed">Update Failed</string>
+    <string name="email_or_phone_existed">Email or phone existed</string>
+
+</resources>
