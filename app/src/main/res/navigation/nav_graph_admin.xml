@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_gtaph"
+    app:startDestination="@+id/nav_restaurant">
+
+    <fragment
+        android:id="@+id/nav_restaurant"
+        android:name="hcmute.nguyennhattam.mssv19110283.foodyapplication.fragment.manage.ManageRestaurantFragment"
+        android:label="@string/restaurant"
+        tools:layout="@layout/fragment_manage_restaurant" />
+
+    <fragment
+        android:id="@+id/nav_food"
+        android:name="hcmute.nguyennhattam.mssv19110283.foodyapplication.fragment.manage.ManageFoodFragment"
+        android:label="@string/food"
+        tools:layout="@layout/fragment_manage_food" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="hcmute.nguyennhattam.mssv19110283.foodyapplication.fragment.menu.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

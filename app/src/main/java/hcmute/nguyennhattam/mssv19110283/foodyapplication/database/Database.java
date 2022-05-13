@@ -17,7 +17,7 @@ import androidx.annotation.Nullable;
 
 
 public class Database extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "foody5.db";
+    public static final String DATABASE_NAME = "foody6.db";
 
     public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -43,26 +43,29 @@ public class Database extends SQLiteOpenHelper {
                 "password varchar(20)," +
                 "address varchar(255)," +
                 "avatar blob)");
+
+        sqLiteDatabase.execSQL("create table if not exists restaurant (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255)," +
+                "phone varchar(10) ," +
+                "address varchar(255)," +
+                "imagerestaurant blob)");
+
+        sqLiteDatabase.execSQL("create table if not exists food (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name varchar(255)," +
+                "description varchar(255)," +
+                "price varchar(255)," +
+                "restaurant INTEGER," +
+                "type varchar(255)," +
+                "imagefood blob)");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE if exists user");
-    }
-
-    public boolean checkUserName(String userName) {
-        SQLiteDatabase myDB = this.getWritableDatabase();
-        Cursor cursor = myDB.rawQuery("Select * from user where name = ?", new String[]{userName});
-        if (cursor.getCount() > 0)
-            return true;
-        else return false;
-    }
-
-    public boolean checkEmailAndPassword(String email, String password) {
-        SQLiteDatabase myDB = this.getWritableDatabase();
-        Cursor cursor = myDB.rawQuery("Select * from user where email = ? and password = ?", new String[]{email, password});
-        if (cursor.getCount() > 0)
-            return true;
-        else return false;
+        sqLiteDatabase.execSQL("DROP TABLE if exists restaurant");
+        sqLiteDatabase.execSQL("DROP TABLE if exists food");
     }
 }

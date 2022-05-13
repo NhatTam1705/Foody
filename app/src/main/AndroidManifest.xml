@@ -26,7 +26,8 @@
             android:name=".activity.ChangePassActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.UpdateProfileActivity"
+            android:name=".activity.ManageActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".signup.RegisterActivity"
@@ -36,6 +37,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddRestaurantActivity"
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"

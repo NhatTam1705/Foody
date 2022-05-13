@@ -8,91 +8,89 @@
 
 package hcmute.nguyennhattam.mssv19110283.foodyapplication.adapter;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
+import java.util.List;
 
-import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
-
+import de.hdodenhof.circleimageview.CircleImageView;
 import hcmute.nguyennhattam.mssv19110283.foodyapplication.R;
-import hcmute.nguyennhattam.mssv19110283.foodyapplication.domain.Foods;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.database.IRestaurantQuery;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.database.IUserQuery;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.database.RestaurantQuery;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.database.UserQuery;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.domain.Food;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.domain.Restaurant;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
-    ArrayList<Foods> foods;
+public class FoodAdapter extends BaseAdapter {
+    private Context context;
+    private int layout;
+    private List<Food> foodList;
+    private final IRestaurantQuery restaurantQuery = RestaurantQuery.getInstance();
 
-    public FoodAdapter(ArrayList<Foods> foods) {
-        this.foods = foods;
+    public FoodAdapter(Context context, int layout, List<Food> foodList) {
+        this.context = context;
+        this.layout = layout;
+        this.foodList = foodList;
     }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.category_tag, parent, false);
-        return new ViewHolder(inflate);
+    public int getCount() {
+        return foodList.size();
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
-//        holder.categoryName.setText(foods.get(position).getName());
-//        holder.price.setText(foods.get(position).getPrice());
-        String picUrl = "";
-        switch (position) {
-            case 0: {
-                picUrl = "banhcanh";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.banhcanh));
-                break;
-            }
-            case 1: {
-                picUrl = "com";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.com));
-                break;
-            }
-            case 2: {
-                picUrl = "bunbo";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.bunbo));
-                break;
-            }
-            case 3: {
-                picUrl = "bunmam";
-                holder.categoryPic.setBackground(ContextCompat
-                        .getDrawable(holder.itemView.getContext(), R.drawable.bunmam));
-                break;
-            }
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    private class ViewHolder {
+        CircleImageView civFoodImage;
+        TextView tvFoodName, tvFoodPrice, tvPhone, tvRestaurant;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        ViewHolder viewHolder;
+
+        if (view == null) {
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(layout, null);
+
+            viewHolder.civFoodImage = view.findViewById(R.id.civ_food_image);
+            viewHolder.tvFoodName = view.findViewById(R.id.tv_food_name);
+            viewHolder.tvFoodPrice = view.findViewById(R.id.tv_food_price);
+            viewHolder.tvPhone = view.findViewById(R.id.tv_phone);
+            viewHolder.tvRestaurant = view.findViewById(R.id.tv_restaurant);
+
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
         }
-        int drawableResourceId = holder.itemView.getContext().getResources()
-                .getIdentifier(picUrl, "drawable", holder.itemView.getContext().getPackageName());
-        Glide.with(holder.itemView.getContext()).load(drawableResourceId).into(holder.categoryPic);
-    }
 
-    @Override
-    public int getItemCount() {
-        return foods.size();
-    }
+        Food food = foodList.get(i);
+        Restaurant restaurant = restaurantQuery.findById(food.getRestaurant());
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView categoryName, price;
-        ImageView categoryPic;
-        ConstraintLayout mainLayout;
+        byte[] foodImage = food.getImagefood();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(foodImage, 0, foodImage.length);
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            categoryName = itemView.findViewById(R.id.categoryName);
-            price = itemView.findViewById(R.id.price);
-            categoryPic = itemView.findViewById(R.id.categoryPic);
-            mainLayout = itemView.findViewById(R.id.mainLayout);
-        }
+        viewHolder.civFoodImage.setImageBitmap(bitmap);
+        viewHolder.tvFoodName.setText(food.getName());
+        viewHolder.tvFoodPrice.setText(food.getPrice());
+        viewHolder.tvPhone.setText(restaurant.getPhone());
+        viewHolder.tvRestaurant.setText(restaurant.getName());
+        return view;
     }
 }

@@ -78,34 +78,49 @@ public class LoginActivity extends AppCompatActivity {
             edtPassword.setError(getString(R.string.enter_password));
             edtPassword.requestFocus();
         } else {
-            try {
-                User user = userQuery.findByUserEmailAndPassword(email, password);
-                if (user != null) {
-                    Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
-                    if (cbRemember.isChecked()) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", email);
-                        editor.putString("password", password);
-                        editor.putBoolean("checked", true);
-                        editor.commit();
+            User user = userQuery.findByUserEmailAndPassword(email, password);
+            if (email.equals("admin@gmail.com")) {
+                Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("email");
+                editor.remove("password");
+                editor.remove("checked");
+                editor.commit();
+                Intent intent = new Intent(LoginActivity.this, ManageActivity.class);
+                Common.currentUser = user;
+                startActivity(intent);
+                SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
+                Utils.setPreferences(Common.currentUser, sharedPreferences);
+                finish();
+            } else {
+                try {
+                    if (user != null) {
+                        Toast.makeText(LoginActivity.this, getString(R.string.login_successfully), Toast.LENGTH_SHORT).show();
+                        if (cbRemember.isChecked()) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("email", email);
+                            editor.putString("password", password);
+                            editor.putBoolean("checked", true);
+                            editor.commit();
+                        } else {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove("email");
+                            editor.remove("password");
+                            editor.remove("checked");
+                            editor.commit();
+                        }
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Common.currentUser = user;
+                        startActivity(intent);
+                        SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
+                        Utils.setPreferences(Common.currentUser, sharedPreferences);
+                        finish();
                     } else {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.remove("email");
-                        editor.remove("password");
-                        editor.remove("checked");
-                        editor.commit();
+                        Toast.makeText(LoginActivity.this, getString(R.string.email_or_password_incorrect), Toast.LENGTH_SHORT).show();
                     }
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    Common.currentUser = user;
-                    startActivity(intent);
-                    SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCE_USER_STATE, MODE_PRIVATE);
-                    Utils.setPreferences(Common.currentUser, sharedPreferences);
-                    finish();
-                } else {
-                    Toast.makeText(LoginActivity.this, getString(R.string.email_or_password_incorrect), Toast.LENGTH_SHORT).show();
+                } catch (Exception ex) {
+                    Toast.makeText(LoginActivity.this, getString(R.string.server_error, ex.getMessage()), Toast.LENGTH_SHORT).show();
                 }
-            } catch (Exception ex) {
-                Toast.makeText(LoginActivity.this, getString(R.string.server_error, ex.getMessage()), Toast.LENGTH_SHORT).show();
             }
         }
     }

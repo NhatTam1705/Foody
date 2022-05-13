@@ -4,5 +4,7 @@
         <item>@font/amita</item>
         <item>@font/bungee</item>
         <item>@font/lobster</item>
+        <item>@font/roboto_bold</item>
+        <item>@font/roboto_regular</item>
     </array>
 </resources>

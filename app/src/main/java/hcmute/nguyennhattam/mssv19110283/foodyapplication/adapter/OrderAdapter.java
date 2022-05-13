@@ -21,10 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import hcmute.nguyennhattam.mssv19110283.foodyapplication.R;
-import hcmute.nguyennhattam.mssv19110283.foodyapplication.domain.Foods;
+import hcmute.nguyennhattam.mssv19110283.foodyapplication.domain.Food;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
-    ArrayList<Foods> foods;
+    ArrayList<Food> foods;
 
     @NonNull
     @Override

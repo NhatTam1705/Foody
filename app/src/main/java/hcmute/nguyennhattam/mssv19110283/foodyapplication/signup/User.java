@@ -31,6 +31,7 @@ public class User {
         this.phone = phone;
         this.password = password;
         this.address = address;
+        this.avatar = avatar;
     }
 
     public Integer getId() {

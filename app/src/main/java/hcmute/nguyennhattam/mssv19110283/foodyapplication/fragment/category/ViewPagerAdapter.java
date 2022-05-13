@@ -24,10 +24,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new DrinkFragment();
-            case 1:
                 return new FoodFragment();
-            case 2:
+            case 1:
                 return new OrderFragment();
             default:
                 return new OrderFragment();
@@ -36,7 +34,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Nullable
@@ -45,12 +43,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         String title = "";
         switch (position) {
             case 0:
-                title = "Drink";
-                break;
-            case 1:
                 title = "Food";
                 break;
-            case 2:
+            case 1:
                 title = "Order";
                 break;
         }

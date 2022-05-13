@@ -60,5 +60,7 @@
     <string name="update_profile_successfully">Update Success</string>
     <string name="update_profile_failed">Update Failed</string>
     <string name="email_or_phone_existed">Email or phone existed</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="food">Food</string>
 
 </resources>
